@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import TitleImage from "../assets/title.svg";
 
@@ -25,18 +26,34 @@ const Img = styled.img`
 `;
 
 const Title = styled.h1`
-  display: flex;
-  align-items: center;
-  gap: 5px;
   font-size: 26px;
   font-weight: 800;
   color: white;
   margin: 0;
 `;
 
+const TitleLink = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: inherit;
+  text-decoration: none;
+`;
+
+const LiLink = styled(NavLink)`
+  color: white;
+  text-decoration: none;
+  &.active {
+    font-weight: 800;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const NavList = styled.ul`
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -54,7 +71,7 @@ const NavItem = styled.li`
 const LogoutButton = styled.button`
   font-size: 18px;
   font-weight: 600;
-  padding: 12px 25px;
+  padding: 12px 20px;
   background: transparent;
   border: none;
   border-radius: 16px;
@@ -68,12 +85,18 @@ const TheHeader = () => {
     <Header>
       <Nav>
         <Title>
-          <Img src={TitleImage} alt="" />
-          Decathlon
+          <TitleLink to="/section">
+            <Img src={TitleImage} alt="" />
+            Decathlon
+          </TitleLink>
         </Title>
         <NavList>
-          <NavItem>섹션별 체류 시간</NavItem>
-          <NavItem>고객별 추적 기록</NavItem>
+          <NavItem>
+            <LiLink to="/section">섹션별 체류 시간</LiLink>
+          </NavItem>
+          <NavItem>
+            <LiLink to="/customer">고객별 추적 기록</LiLink>
+          </NavItem>
           <NavItem>
             <LogoutButton>로그아웃</LogoutButton>
           </NavItem>

@@ -1,3 +1,5 @@
+import TheHeader from "../layout/TheHeader";
+
 const CustomerPage = () => {
   return (
     <>
