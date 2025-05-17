@@ -1,5 +1,12 @@
+import TheHeader from "../layout/TheHeader";
+
 const CustomerPage = () => {
-  return <p>Customer page</p>;
+  return (
+    <>
+      <TheHeader />
+      <p>Customer page</p>
+    </>
+  );
 };
 
 export default CustomerPage;
