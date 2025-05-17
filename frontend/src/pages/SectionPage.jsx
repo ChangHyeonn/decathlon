@@ -1,5 +1,12 @@
+import TheHeader from "../layout/TheHeader";
+
 const SectionPage = () => {
-  return <p>Section page</p>;
+  return (
+    <>
+      <TheHeader />
+      <p>Section page</p>
+    </>
+  );
 };
 
 export default SectionPage;
