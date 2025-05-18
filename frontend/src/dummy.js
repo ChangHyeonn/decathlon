@@ -1,3 +1,13 @@
+export const graphData = [
+  { name: "상의", 비율: 7 },
+  { name: "하의", 비율: 30 },
+  { name: "언더웨어", 비율: 10 },
+  { name: "아우터", 비율: 5 },
+  { name: "러닝화", 비율: 10 },
+  { name: "등산화", 비율: 8 },
+  { name: "물품", 비율: 30 },
+];
+
 export const customerData = [
   {
     id: 1,
