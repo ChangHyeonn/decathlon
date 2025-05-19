@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TitleImage from "../assets/title.svg";
 
@@ -81,6 +81,11 @@ const LogoutButton = styled.button`
 `;
 
 const TheHeader = () => {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate("/signin", { replace: true });
+  };
+
   return (
     <Header>
       <Nav>
@@ -98,7 +103,7 @@ const TheHeader = () => {
             <LiLink to="/customer">고객별 추적 기록</LiLink>
           </NavItem>
           <NavItem>
-            <LogoutButton>로그아웃</LogoutButton>
+            <LogoutButton onClick={handleButtonClick}>로그아웃</LogoutButton>
           </NavItem>
         </NavList>
       </Nav>
