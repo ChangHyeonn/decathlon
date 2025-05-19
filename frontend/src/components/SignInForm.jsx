@@ -69,7 +69,7 @@ const SignInForm = () => {
     const password = formData.get("password");
 
     if (id === "admin" && password === "admin") {
-      navigate("/section");
+      navigate("/section", { replace: true });
     } else {
       alert("아이디 또는 비밀번호가 잘못되었습니다.");
     }
