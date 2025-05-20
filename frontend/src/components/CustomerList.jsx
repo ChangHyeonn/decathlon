@@ -8,6 +8,10 @@ const CustomerItem = styled.div`
   margin: auto;
   padding: 16px 12px;
   border-bottom: 1px solid black;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
 `;
 
 const Info = styled.div`
@@ -17,7 +21,7 @@ const Info = styled.div`
   flex: 1;
 `;
 
-const CustomerList = ({ customer }) => {
+const CustomerList = ({ customer, onClick }) => {
   const entries = Object.entries(customer);
 
   const renderValue = (index, value) => {
@@ -30,7 +34,7 @@ const CustomerList = ({ customer }) => {
   };
 
   return (
-    <CustomerItem>
+    <CustomerItem onClick={onClick}>
       {entries.map(([key, value], index) => (
         <Info key={key + index}>{renderValue(index, value)}</Info>
       ))}
