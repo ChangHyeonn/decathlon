@@ -1,9 +1,11 @@
+import { useState } from "react";
 import styled from "styled-components";
 import TheHeader from "../layout/TheHeader";
 import { customerData } from "../dummy";
 // customerData는 더미 데이터 <- 이후에 api 연결하여 제거
 import CustomerList from "../components/CustomerList";
 import CustomerTitle from "../components/CustomerTitle";
+import CustomerModal from "../components/CustomerModal";
 
 const TableDiv = styled.div`
   width: 80%;
@@ -37,6 +39,18 @@ const Pagination = styled.p`
 `;
 
 const CustomerPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const handleModalOpen = (customer) => {
+    setSelectedCustomer(customer);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedCustomer(null);
+  };
+
   return (
     <>
       <TheHeader />
@@ -50,10 +64,11 @@ const CustomerPage = () => {
         </DateDiv>
         <CustomerTitle title={customerData.length > 0 ? Object.keys(customerData[0]) : []} />
         {customerData.map((customer) => {
-          return <CustomerList key={customer.id} customer={customer} />;
+          return <CustomerList key={customer.id} customer={customer} onClick={() => handleModalOpen(customer)} />;
         })}
         <Pagination>{`< 1 2 3 4 >`}</Pagination>
       </TableDiv>
+      <CustomerModal isModalOpen={isModalOpen} handleModalClose={handleModalClose} customer={selectedCustomer} />
     </>
   );
 };
