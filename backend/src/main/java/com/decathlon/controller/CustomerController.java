@@ -102,6 +102,8 @@ public class CustomerController {
             LIMIT ? OFFSET ?
             """;
 
+
+
         List<Map<String, Object>> queryResultList = jdbcTemplate.queryForList(customerSql, today, limit, offset);
 
         List<Map<String, Object>> customerTrackingRecords = new ArrayList<>();
