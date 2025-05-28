@@ -8,6 +8,7 @@ CREATE TABLE Customers (
 CREATE TABLE Zones (
     zone_id INT PRIMARY KEY COMMENT '구역 고유 ID',
     zone_name VARCHAR(50) COMMENT '구역 이름'
+    path_history TEXT
 );
 
 -- 테이블: ZoneStayTimes
