@@ -23,12 +23,6 @@ const Box = styled.div`
   background-color: #272757;
 `;
 
-const SelectDateDiv = styled.div`
-  width: 90%;
-  font-size: 14px;
-  text-align: right;
-`;
-
 const SectionPage = () => {
   return (
     <>
@@ -38,7 +32,6 @@ const SectionPage = () => {
           <Box />
           섹션별 체류 시간
         </GraphH2>
-        <SelectDateDiv>일간 / 주간 / 월간</SelectDateDiv>
         <SectionGraph />
       </GraphDiv>
     </>
