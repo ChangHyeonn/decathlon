@@ -8,6 +8,16 @@ export const zones = [
   { zone_name: "zone_G", total_stay_time_seconds: 990, score: 6 },
 ];
 
+export const customerDetail = {
+  customer_data: {
+    purchase_state: false,
+    tracking_period: "25/05/17 14:00 - 25/05/17 14:05",
+    id: 2,
+    total_stay_time_seconds: 330,
+  },
+  customer_movement_log: ["zone_A", "zone_B", "zone_C", "zone_A", "zone_E", "zone_A"],
+};
+
 export const customerData = {
   month: 5,
   day: 19,
