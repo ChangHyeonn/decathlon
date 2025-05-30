@@ -41,6 +41,7 @@ const Pagination = styled.p`
 const CustomerPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+
   const handleModalOpen = (customer) => {
     setSelectedCustomer(customer);
     setIsModalOpen(true);
@@ -60,11 +61,19 @@ const CustomerPage = () => {
           고객별 추적 기록
         </TitleH2>
         <DateDiv>
-          {`<`} 5월 18일 {`>`}
+          {`<`} {`${customerData.month}월 ${customerData.day}일`} {`>`}
         </DateDiv>
-        <CustomerTitle title={customerData.length > 0 ? Object.keys(customerData[0]) : []} />
-        {customerData.map((customer) => {
-          return <CustomerList key={customer.id} customer={customer} onClick={() => handleModalOpen(customer)} />;
+        <CustomerTitle
+          title={
+            customerData.customer_tracking_records.length > 0
+              ? Object.keys(customerData.customer_tracking_records[0])
+              : []
+          }
+        />
+        {customerData.customer_tracking_records.map((customer) => {
+          return (
+            <CustomerList key={customer.customer_id} customer={customer} onClick={() => handleModalOpen(customer)} />
+          );
         })}
         <Pagination>{`< 1 2 3 4 >`}</Pagination>
       </TableDiv>

@@ -21,19 +21,21 @@ const Info = styled.div`
 
 const CustomerTitle = ({ title }) => {
   const renderValue = (value) => {
-    if (value === "id") {
+    if (value === "customer_id") {
       return "고객";
-    } else if (value === "buyCheck") {
+    } else if (value === "purchase_state") {
       return "구매 여부";
+    } else if (value === "score") {
+      return "점수";
     }
     return value;
   };
 
   return (
     <CustomerItem>
-      {title.map((value, index) => (
-        <Info key={index}>{renderValue(value)}</Info>
-      ))}
+      {title.map((value, index) =>
+        value !== "zone_entrance" && value !== "zone_checkout" ? <Info key={index}>{renderValue(value)}</Info> : <></>
+      )}
     </CustomerItem>
   );
 };

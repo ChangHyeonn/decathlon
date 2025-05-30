@@ -24,20 +24,22 @@ const Info = styled.div`
 const CustomerList = ({ customer, onClick }) => {
   const entries = Object.entries(customer);
 
-  const renderValue = (index, value) => {
+  const renderValue = (key, value) => {
     if (typeof value === "boolean") {
       return value ? "O" : "X";
-    } else if (index > 0) {
-      return value + "초";
+    } else if (key === "customer_id" || key === "score") {
+      return value;
     }
-    return value;
+    return `${value}초`;
   };
 
   return (
     <CustomerItem onClick={onClick}>
-      {entries.map(([key, value], index) => (
-        <Info key={key + index}>{renderValue(index, value)}</Info>
-      ))}
+      {entries.map(
+        ([key, value], index) =>
+          key !== "zone_entrance" &&
+          (key !== "zone_checkout" ? <Info key={key + index}>{renderValue(key, value)}</Info> : <></>)
+      )}
     </CustomerItem>
   );
 };
