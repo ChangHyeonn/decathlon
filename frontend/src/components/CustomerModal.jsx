@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { customerDetail } from "../dummy";
+import { useQuery } from "@tanstack/react-query";
+import { getCustomerDetail } from "../api/customerApi";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -76,6 +77,22 @@ const ContextP = styled.p`
 `;
 
 const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
+  const {
+    data: customerDetail,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["customer101"],
+    queryFn: getCustomerDetail,
+  });
+
+  if (isPending) {
+    return <h2>Loading...</h2>;
+  }
+  if (isError) {
+    return <h2>Error fetching posts</h2>;
+  }
+
   const generateLog = (logs) => {
     if (!logs || logs.length === 0) return "";
     return logs.join(" -> ");

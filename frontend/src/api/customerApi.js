@@ -6,3 +6,9 @@ export const getCustomerList = async () => {
 
   return response.data;
 };
+
+export const getCustomerDetail = async () => {
+  const response = await axios.get(`${HOST}/api/customers/101`);
+
+  return response.data;
+};
