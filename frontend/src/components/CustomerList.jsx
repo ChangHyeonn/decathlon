@@ -22,7 +22,7 @@ const Info = styled.div`
 `;
 
 const CustomerList = ({ customer, onClick }) => {
-  const entries = Object.entries(customer);
+  const entries = Object.entries(customer).filter(([key]) => key !== "zone_entrance" && key !== "zone_checkout");
 
   const renderValue = (key, value) => {
     if (typeof value === "boolean") {
@@ -35,11 +35,9 @@ const CustomerList = ({ customer, onClick }) => {
 
   return (
     <CustomerItem onClick={onClick}>
-      {entries.map(
-        ([key, value], index) =>
-          key !== "zone_entrance" &&
-          (key !== "zone_checkout" ? <Info key={key + index}>{renderValue(key, value)}</Info> : <></>)
-      )}
+      {entries.map(([key, value]) => (
+        <Info key={key}>{renderValue(key, value)}</Info>
+      ))}
     </CustomerItem>
   );
 };

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
 import TheHeader from "../layout/TheHeader";
-import { customerData } from "../dummy";
-// customerData는 더미 데이터 <- 이후에 api 연결하여 제거
+import { useQuery } from "@tanstack/react-query";
+import { getCustomerList } from "../api/customerApi";
 import CustomerList from "../components/CustomerList";
 import CustomerTitle from "../components/CustomerTitle";
 import CustomerModal from "../components/CustomerModal";
@@ -41,6 +41,47 @@ const Pagination = styled.p`
 const CustomerPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const {
+    data: customerData,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["graph"],
+    queryFn: getCustomerList,
+  });
+
+  if (isPending || !customerData.customer_tracking_records) {
+    return (
+      <>
+        <TheHeader />
+        <TableDiv>
+          <TitleH2>
+            <Box />
+            고객별 추적 기록
+          </TitleH2>
+          <h2>Loading...</h2>
+        </TableDiv>
+      </>
+    );
+  }
+  if (isError) {
+    return (
+      <>
+        <TheHeader />
+        <TableDiv>
+          <TitleH2>
+            <Box />
+            고객별 추적 기록
+          </TitleH2>
+          <h2>Error fetching posts</h2>
+        </TableDiv>
+      </>
+    );
+  }
+
+  if (customerData) {
+    console.log(customerData);
+  }
 
   const handleModalOpen = (customer) => {
     setSelectedCustomer(customer);
@@ -64,11 +105,7 @@ const CustomerPage = () => {
           {`<`} {`${customerData.month}월 ${customerData.day}일`} {`>`}
         </DateDiv>
         <CustomerTitle
-          title={
-            customerData.customer_tracking_records.length > 0
-              ? Object.keys(customerData.customer_tracking_records[0])
-              : []
-          }
+          title={customerData.customer_tracking_records ? Object.keys(customerData.customer_tracking_records[0]) : []}
         />
         {customerData.customer_tracking_records.map((customer) => {
           return (

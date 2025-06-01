@@ -31,11 +31,13 @@ const CustomerTitle = ({ title }) => {
     return value;
   };
 
+  const filtered = title.filter((value) => value !== "zone_entrance" && value !== "zone_checkout");
+
   return (
     <CustomerItem>
-      {title.map((value, index) =>
-        value !== "zone_entrance" && value !== "zone_checkout" ? <Info key={index}>{renderValue(value)}</Info> : <></>
-      )}
+      {filtered.map((value) => (
+        <Info key={value}>{renderValue(value)}</Info>
+      ))}
     </CustomerItem>
   );
 };
