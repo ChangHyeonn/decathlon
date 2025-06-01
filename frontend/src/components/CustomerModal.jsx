@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
+import { getCustomerDetail } from "../api/customerApi";
 
 const ModalBackdrop = styled.div`
   position: fixed;
@@ -27,7 +29,9 @@ const CloseButton = styled.button`
   background: none;
   font-size: 24px;
   cursor: pointer;
-  float: right;
+  position: absolute;
+  top: 15px;
+  right: 20px;
 `;
 
 const DetailDiv = styled.div`
@@ -42,11 +46,13 @@ const CustomerDataDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
 `;
 const CustomerMovementDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
 `;
 const LineDiv = styled.div`
   width: 1px;
@@ -64,10 +70,34 @@ const TitleH2 = styled.h2`
 const ContextP = styled.p`
   font-size: 16px;
   font-weight: 500;
-  margin-bottom: 5px;
+  line-height: 1.8;
+  text-align: center;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 `;
 
 const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
+  const {
+    data: customerDetail,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["customer101"],
+    queryFn: getCustomerDetail,
+  });
+
+  if (isPending) {
+    return <h2>Loading...</h2>;
+  }
+  if (isError) {
+    return <h2>Error fetching posts</h2>;
+  }
+
+  const generateLog = (logs) => {
+    if (!logs || logs.length === 0) return "";
+    return logs.join(" -> ");
+  };
+
   if (!isModalOpen || !customer) return null;
   return (
     <ModalBackdrop onClick={handleModalClose}>
@@ -76,17 +106,15 @@ const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
         <DetailDiv>
           <CustomerDataDiv>
             <TitleH2>고객 데이터</TitleH2>
-            <ContextP>25/05/14 14:17 - 25/05/14 14:30</ContextP>
-            <ContextP>고객 {customer.id}</ContextP>
-            <ContextP>총 체류 시간: 724초</ContextP>
-            <ContextP>구매 여부: X</ContextP>
+            <ContextP>{customerDetail.customer_data.tracking_period}</ContextP>
+            <ContextP>고객 {customerDetail.customer_data.id}</ContextP>
+            <ContextP>총 체류 시간: {customerDetail.customer_data.total_stay_time_seconds}초</ContextP>
+            <ContextP>구매 여부: {customerDetail.customer_data.purchase_state ? "X" : "O"}</ContextP>
           </CustomerDataDiv>
           <LineDiv />
           <CustomerMovementDiv>
             <TitleH2>고객 이동 동선</TitleH2>
-            <ContextP>{`러닝화 -> 등산화 -> 언더웨어 -> 상의 ->`}</ContextP>
-            <ContextP>{`아우터 -> 상의 -> 아우터 -> 하의 -> 상의`}</ContextP>
-            <ContextP>{`-> 아우터`}</ContextP>
+            <ContextP>{generateLog(customerDetail.customer_movement_log)}</ContextP>
           </CustomerMovementDiv>
         </DetailDiv>
       </ModalBox>
