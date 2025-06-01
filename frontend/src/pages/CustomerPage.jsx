@@ -17,6 +17,7 @@ const TableDiv = styled.div`
 const TitleH2 = styled.h2`
   display: flex;
   gap: 15px;
+  margin-bottom: 10px;
   font-size: 24px;
   font-weight: 500;
 `;
@@ -101,9 +102,7 @@ const CustomerPage = () => {
           <Box />
           고객별 추적 기록
         </TitleH2>
-        <DateDiv>
-          {`<`} {`${customerData.month}월 ${customerData.day}일`} {`>`}
-        </DateDiv>
+        <DateDiv>{`${customerData.month}월 ${customerData.day}일`}</DateDiv>
         <CustomerTitle
           title={customerData.customer_tracking_records ? Object.keys(customerData.customer_tracking_records[0]) : []}
         />

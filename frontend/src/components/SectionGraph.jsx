@@ -13,10 +13,9 @@ const GraphDiv = styled.div`
   align-items: center;
 `;
 
-const GraphH2 = styled.h2`
-  display: flex;
-  margin: 10px 0 20px;
-  font-size: 24px;
+const DateDiv = styled.div`
+  margin: 20px auto;
+  font-size: 22px;
   font-weight: 500;
 `;
 
@@ -46,7 +45,7 @@ const SectionGraph = () => {
 
   return (
     <GraphDiv>
-      <GraphH2>{`${month}월 ${day}일`}</GraphH2>
+      <DateDiv>{`${month}월 ${day}일`}</DateDiv>
       <LineChart width={1400} height={600} margin={{ top: 5, right: 40, bottom: 5, left: 40 }} data={zones}>
         <Line type="monotone" yAxisId="left" dataKey="total_stay_time_seconds" name="체류 시간" stroke="#394DBF" />
         <Line type="monotone" yAxisId="right" dataKey="score" name="점수" stroke="#ff7f0e" />
