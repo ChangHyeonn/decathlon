@@ -1,6 +1,8 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from "recharts";
 import styled from "styled-components";
 import { zones } from "../dummy";
+import { useQuery } from "@tanstack/react-query";
+import { getGraphToday } from "../api/sectionApi";
 
 const GraphDiv = styled.div`
   width: 90%;
@@ -19,25 +21,25 @@ const GraphH2 = styled.h2`
 `;
 
 const SectionGraph = () => {
-  // const {
-  //   data: graphData,
-  //   isPending,
-  //   isError,
-  // } = useQuery({
-  //   queryKey: ["graph"],
-  //   queryFn: getGraphToday,
-  // });
+  const {
+    data: graphData,
+    isPending,
+    isError,
+  } = useQuery({
+    queryKey: ["graph"],
+    queryFn: getGraphToday,
+  });
 
-  // if (isPending) {
-  //   return <h2>Loading...</h2>;
-  // }
-  // if (isError) {
-  //   return <h2>Error fetching posts</h2>;
-  // }
+  if (isPending) {
+    return <h2>Loading...</h2>;
+  }
+  if (isError) {
+    return <h2>Error fetching posts</h2>;
+  }
 
-  // if (graphData) {
-  //   console.log(graphData);
-  // }
+  if (graphData) {
+    console.log(graphData);
+  }
 
   const month = new Date().getMonth() + 1;
   const day = new Date().getDate();
