@@ -1,7 +1,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from "recharts";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { getGraphToday, getGraphWeekly, getGraphMonthly } from "../api/sectionApi";
+import { getGraphToday, getGraphWeekly, getGraphMonthly } from "../../api/sectionApi";
 
 const GraphDiv = styled.div`
   width: 90%;

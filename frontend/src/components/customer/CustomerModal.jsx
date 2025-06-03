@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { getCustomerDetail } from "../api/customerApi";
+import { getCustomerDetail } from "../../api/customerApi";
 
 const ModalBackdrop = styled.div`
   position: fixed;
