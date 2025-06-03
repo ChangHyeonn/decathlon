@@ -77,9 +77,10 @@ const ContextP = styled.p`
 `;
 
 const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
-  const { data: customerDetail } = useQuery({
-    queryKey: ["customer101"],
-    queryFn: getCustomerDetail,
+  const { data: customerDetail, isPending } = useQuery({
+    queryKey: ["customer", customer?.customer_id],
+    queryFn: () => getCustomerDetail(customer.customer_id),
+    enabled: !!customer,
   });
 
   const generateLog = (logs) => {
@@ -88,6 +89,13 @@ const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
   };
 
   if (!isModalOpen || !customer) return null;
+  if (isPending)
+    return (
+      <ModalBackdrop onClick={handleModalClose}>
+        <ModalBox onClick={(e) => e.stopPropagation()}></ModalBox>
+      </ModalBackdrop>
+    );
+
   return (
     <ModalBackdrop onClick={handleModalClose}>
       <ModalBox onClick={(e) => e.stopPropagation()}>
