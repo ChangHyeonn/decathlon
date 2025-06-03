@@ -40,8 +40,6 @@ const SectionGraph = ({ nowDate }) => {
     return <MessageH2>Error fetching posts</MessageH2>;
   }
 
-  console.log(graphData);
-
   return (
     <GraphDiv>
       <LineChart width={1400} height={600} margin={{ top: 5, right: 40, bottom: 5, left: 40 }} data={graphData.zones}>
