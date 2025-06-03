@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import TheHeader from "../layout/TheHeader";
 import { useQuery } from "@tanstack/react-query";
 import { getCustomerList } from "../api/customerApi";
-import CustomerList from "../components/CustomerList";
-import CustomerTitle from "../components/CustomerTitle";
-import CustomerModal from "../components/CustomerModal";
+import CustomerList from "../components/customer/CustomerList";
+import CustomerTitle from "../components/customer/CustomerTitle";
+import CustomerModal from "../components/customer/CustomerModal";
+import CustomerError from "../components/customer/CustomerError";
 
 const TableDiv = styled.div`
   width: 80%;
@@ -40,6 +41,8 @@ const Pagination = styled.p`
 `;
 
 const CustomerPage = () => {
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [day, setDay] = useState(new Date().getDate());
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const {
@@ -51,37 +54,29 @@ const CustomerPage = () => {
     queryFn: getCustomerList,
   });
 
-  if (isPending || !customerData.customer_tracking_records) {
+  useEffect(() => {
+    if (customerData?.month) {
+      setMonth(customerData.month);
+      setDay(customerData.day);
+    }
+  }, [customerData]);
+
+  if (isError || customerData?.error) {
     return (
       <>
         <TheHeader />
-        <TableDiv>
-          <TitleH2>
-            <Box />
-            고객별 추적 기록
-          </TitleH2>
-          <h2>Loading...</h2>
-        </TableDiv>
-      </>
-    );
-  }
-  if (isError) {
-    return (
-      <>
-        <TheHeader />
-        <TableDiv>
-          <TitleH2>
-            <Box />
-            고객별 추적 기록
-          </TitleH2>
-          <h2>Error fetching posts</h2>
-        </TableDiv>
+        <CustomerError month={month} day={day} message={customerData?.error} />
       </>
     );
   }
 
-  if (customerData) {
-    console.log(customerData);
+  if (isPending || !customerData.customer_tracking_records) {
+    return (
+      <>
+        <TheHeader />
+        <CustomerError month={month} day={day} message={"Loading..."} />
+      </>
+    );
   }
 
   const handleModalOpen = (customer) => {
@@ -102,7 +97,7 @@ const CustomerPage = () => {
           <Box />
           고객별 추적 기록
         </TitleH2>
-        <DateDiv>{`${customerData.month}월 ${customerData.day}일`}</DateDiv>
+        <DateDiv>{`${month}월 ${day}일`}</DateDiv>
         <CustomerTitle
           title={customerData.customer_tracking_records ? Object.keys(customerData.customer_tracking_records[0]) : []}
         />

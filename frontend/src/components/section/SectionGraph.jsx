@@ -12,6 +12,12 @@ const GraphDiv = styled.div`
   align-items: center;
 `;
 
+const MessageH2 = styled.h2`
+  margin: 40px auto;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
 const SectionGraph = ({ nowDate }) => {
   const {
     data: graphData,
@@ -28,10 +34,10 @@ const SectionGraph = ({ nowDate }) => {
   });
 
   if (isPending) {
-    return <h2>Loading...</h2>;
+    return <MessageH2>Loading...</MessageH2>;
   }
   if (isError) {
-    return <h2>Error fetching posts</h2>;
+    return <MessageH2>Error fetching posts</MessageH2>;
   }
 
   console.log(graphData);
