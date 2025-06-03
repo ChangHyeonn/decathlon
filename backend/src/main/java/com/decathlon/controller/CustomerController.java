@@ -19,10 +19,8 @@ public class CustomerController {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // 스코어 계산 함수
     private int calculateScore(Map<String, Object> row) {
         int score = 0;
-        // 15초당 1점 계산 (각 zone별)
         score += ((Number) row.getOrDefault("zone_entrance", 0)).intValue() / 15;
         score += ((Number) row.getOrDefault("zone_checkout", 0)).intValue() / 15;
         score += ((Number) row.getOrDefault("zone_A", 0)).intValue() / 15;
@@ -36,7 +34,7 @@ public class CustomerController {
             for (String zone : pathList) {
                 if (prevZone != null && !zone.equals(prevZone)) {
                     if (visited.contains(zone)) {
-                        score += 1; // 재방문 점수 추가
+                        score += 1;
                     }
                     visited.add(prevZone);
                 } else if (prevZone == null) {
@@ -48,47 +46,119 @@ public class CustomerController {
         return score;
     }
 
-    // 공통: 날짜 조건에 따른 zone별 체류시간 조회 함수
-    private Map<String, Object> getZoneStayTimes(String dateConditionSql) {
-        String sql = String.format("""
-            SELECT
-                z.zone_name,
-                COALESCE(SUM(zst.stay_time_seconds), 0) AS total_stay_time_seconds
-            FROM Zones z
-            LEFT JOIN ZoneStayTimes zst ON z.zone_id = zst.zone_id AND %s
-            GROUP BY z.zone_name
-            ORDER BY z.zone_name
-            """, dateConditionSql);
+    private Map<String, Object> getZoneStayTimesWithScores(String dateConditionSql, boolean isToday) {
+        String staySql = String.format("""
+        SELECT
+            z.zone_name,
+            COALESCE(SUM(zst.stay_time_seconds), 0) AS total_stay_time_seconds
+        FROM Zones z
+        LEFT JOIN ZoneStayTimes zst ON z.zone_id = zst.zone_id AND %s
+        GROUP BY z.zone_name
+        ORDER BY z.zone_name
+        """, dateConditionSql);
 
-        List<Map<String, Object>> zonesData = jdbcTemplate.queryForList(sql);
-        return Map.of("zones", zonesData);
+        List<Map<String, Object>> stayTimes = jdbcTemplate.queryForList(staySql);
+
+        Map<String, Integer> lastVisitMap = new HashMap<>();
+        if (isToday) {
+            String lastVisitSql = """
+            SELECT 
+                ranked.zone_name,
+                COUNT(*) AS last_visit_count
+            FROM (
+                SELECT zst.customer_id, z.zone_name,
+                       ROW_NUMBER() OVER (PARTITION BY zst.customer_id ORDER BY zst.visited_at DESC) AS rn
+                FROM ZoneStayTimes zst
+                JOIN Zones z ON zst.zone_id = z.zone_id
+                WHERE DATE(zst.visited_at) = CURDATE()
+            ) ranked
+            WHERE ranked.rn = 1
+            GROUP BY ranked.zone_name
+            """;
+
+            List<Map<String, Object>> lastVisits = jdbcTemplate.queryForList(lastVisitSql);
+            for (Map<String, Object> row : lastVisits) {
+                String zoneName = (String) row.get("zone_name");
+                int count = ((Number) row.get("last_visit_count")).intValue();
+                lastVisitMap.put(zoneName, count);
+            }
+        }
+
+        List<Map<String, Object>> zonesWithScores = new ArrayList<>();
+        for (Map<String, Object> row : stayTimes) {
+            String zoneName = (String) row.get("zone_name");
+            int staySeconds = ((Number) row.get("total_stay_time_seconds")).intValue();
+            int score = staySeconds / 15;
+
+            if (isToday) {
+                score += lastVisitMap.getOrDefault(zoneName, 0);
+            }
+
+            Map<String, Object> zoneInfo = new LinkedHashMap<>();
+            zoneInfo.put("zone_name", zoneName);
+            zoneInfo.put("total_stay_time_seconds", staySeconds);
+            zoneInfo.put("score", score);
+
+            zonesWithScores.add(zoneInfo);
+        }
+
+        return Map.of("zones", zonesWithScores);
     }
 
     @GetMapping("/zones/today-stay-times")
     public Map<String, Object> getTodayZoneStayTimes() {
-        // 오늘 날짜 조건을 ON절에 넣음
-        return getZoneStayTimes("DATE(zst.log_date) = CURDATE()");
+        return getZoneStayTimesWithScores("DATE(zst.visited_at) = CURDATE()", true);
     }
 
     @GetMapping("/zones/weekly-stay-times")
     public Map<String, Object> getWeeklyZoneStayTimes() {
-        // 지난 7일간 (오늘 포함) 조건 ON절에 넣음
-        return getZoneStayTimes("zst.log_date >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND zst.log_date <= CURDATE()");
+        return getZoneStayTimesWithScores("zst.visited_at >= DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND zst.visited_at <= CURDATE()", false);
     }
 
     @GetMapping("/zones/monthly-stay-times")
     public Map<String, Object> getMonthlyZoneStayTimes() {
-        // 지난 1개월간 조건 ON절에 넣음
-        return getZoneStayTimes("zst.log_date >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND zst.log_date <= CURDATE()");
+        return getZoneStayTimesWithScores("zst.visited_at >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) AND zst.visited_at <= CURDATE()", false);
     }
 
     @GetMapping("/customers")
-    public Map<String, Object> getAllCustomers(@RequestParam(value = "page", required = false, defaultValue = "1") Integer page) {
+    public Map<String, Object> getAllCustomers(
+            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+            @RequestParam(value = "date", required = false) String dateStr
+    ) {
         int limit = 10;
         int offset = (page - 1) * limit;
-        LocalDate today = LocalDate.now();
 
-        String customerSql = """
+        LocalDate requestedDate;
+        try {
+            if (dateStr == null || dateStr.isEmpty()) {
+                requestedDate = LocalDate.now();
+            } else {
+                requestedDate = LocalDate.parse(dateStr);
+            }
+        } catch (Exception e) {
+            return Map.of("error", "날짜 문법 오류 예시 : 2025-03-21");
+        }
+
+        String customerIdsSql = "SELECT DISTINCT c.customer_id FROM Customers c JOIN ZoneStayTimes zst ON c.customer_id = zst.customer_id WHERE DATE(zst.visited_at) = ?";
+        List<Long> customerIds = jdbcTemplate.queryForList(customerIdsSql, Long.class, requestedDate);
+
+        if (customerIds.isEmpty()) {
+            return Map.of("error", "고객이 존재하지 않습니다");
+        }
+
+        int totalCustomers = customerIds.size();
+        int totalPages = (int) Math.ceil((double) totalCustomers / limit);
+        if (page > totalPages) {
+            page = totalPages;
+            offset = (page - 1) * limit;
+        }
+
+        int toIndex = Math.min(offset + limit, totalCustomers);
+        List<Long> pagedCustomerIds = customerIds.subList(offset, toIndex);
+
+        String inSql = String.join(",", Collections.nCopies(pagedCustomerIds.size(), "?"));
+
+        String customerSql = String.format("""
             SELECT c.customer_id, c.purchase_state,
                    COALESCE(SUM(CASE WHEN z.zone_name = 'zone_entrance' THEN zst.stay_time_seconds ELSE 0 END), 0) AS zone_entrance,
                    COALESCE(SUM(CASE WHEN z.zone_name = 'zone_checkout' THEN zst.stay_time_seconds ELSE 0 END), 0) AS zone_checkout,
@@ -96,15 +166,17 @@ public class CustomerController {
                    COALESCE(SUM(CASE WHEN z.zone_name = 'zone_B' THEN zst.stay_time_seconds ELSE 0 END), 0) AS zone_B,
                    GROUP_CONCAT(z.zone_name ORDER BY zst.visited_at SEPARATOR ',') AS movement_path
             FROM Customers c
-            LEFT JOIN ZoneStayTimes zst ON c.customer_id = zst.customer_id AND DATE(zst.log_date) = ?
+            LEFT JOIN ZoneStayTimes zst ON c.customer_id = zst.customer_id AND DATE(zst.visited_at) = ?
             LEFT JOIN Zones z ON zst.zone_id = z.zone_id
+            WHERE c.customer_id IN (%s)
             GROUP BY c.customer_id, c.purchase_state
-            LIMIT ? OFFSET ?
-            """;
+            """, inSql);
 
+        List<Object> params = new ArrayList<>();
+        params.add(requestedDate);
+        params.addAll(pagedCustomerIds);
 
-
-        List<Map<String, Object>> queryResultList = jdbcTemplate.queryForList(customerSql, today, limit, offset);
+        List<Map<String, Object>> queryResultList = jdbcTemplate.queryForList(customerSql, params.toArray());
 
         List<Map<String, Object>> customerTrackingRecords = new ArrayList<>();
         for (Map<String, Object> row : queryResultList) {
@@ -122,10 +194,6 @@ public class CustomerController {
             customerTrackingRecords.add(orderedRow);
         }
 
-        String countSql = "SELECT COUNT(*) FROM Customers";
-        int totalCustomers = jdbcTemplate.queryForObject(countSql, Integer.class);
-        int totalPages = (int) Math.ceil((double) totalCustomers / limit);
-
         Map<String, Object> pagination = new LinkedHashMap<>();
         pagination.put("current_page", page);
         pagination.put("total_pages", totalPages);
@@ -133,8 +201,8 @@ public class CustomerController {
         pagination.put("next_page", (page < totalPages) ? page + 1 : null);
 
         Map<String, Object> response = new LinkedHashMap<>();
-        response.put("month", today.getMonthValue());
-        response.put("day", today.getDayOfMonth());
+        response.put("month", requestedDate.getMonthValue());
+        response.put("day", requestedDate.getDayOfMonth());
         response.put("customer_tracking_records", customerTrackingRecords);
         response.put("pagination", pagination);
 
