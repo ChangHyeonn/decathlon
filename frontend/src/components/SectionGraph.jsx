@@ -1,8 +1,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from "recharts";
 import styled from "styled-components";
-import { zones } from "../dummy";
 import { useQuery } from "@tanstack/react-query";
-import { getGraphToday } from "../api/sectionApi";
+import { getGraphToday, getGraphWeekly, getGraphMonthly } from "../api/sectionApi";
 
 const GraphDiv = styled.div`
   width: 90%;
@@ -13,20 +12,19 @@ const GraphDiv = styled.div`
   align-items: center;
 `;
 
-const DateDiv = styled.div`
-  margin: 20px auto;
-  font-size: 22px;
-  font-weight: 500;
-`;
-
-const SectionGraph = () => {
+const SectionGraph = ({ nowDate }) => {
   const {
     data: graphData,
     isPending,
     isError,
   } = useQuery({
-    queryKey: ["graph"],
-    queryFn: getGraphToday,
+    queryKey: ["graph", nowDate],
+    queryFn: () => {
+      // nowDate 값에 따라 다른 API 함수 호출
+      if (nowDate === "일간") return getGraphToday();
+      if (nowDate === "주간") return getGraphWeekly();
+      if (nowDate === "월간") return getGraphMonthly();
+    },
   });
 
   if (isPending) {
@@ -36,17 +34,11 @@ const SectionGraph = () => {
     return <h2>Error fetching posts</h2>;
   }
 
-  if (graphData) {
-    console.log(graphData);
-  }
-
-  const month = new Date().getMonth() + 1;
-  const day = new Date().getDate();
+  console.log(graphData);
 
   return (
     <GraphDiv>
-      <DateDiv>{`${month}월 ${day}일`}</DateDiv>
-      <LineChart width={1400} height={600} margin={{ top: 5, right: 40, bottom: 5, left: 40 }} data={zones}>
+      <LineChart width={1400} height={600} margin={{ top: 5, right: 40, bottom: 5, left: 40 }} data={graphData.zones}>
         <Line type="monotone" yAxisId="left" dataKey="total_stay_time_seconds" name="체류 시간" stroke="#394DBF" />
         <Line type="monotone" yAxisId="right" dataKey="score" name="점수" stroke="#ff7f0e" />
         <CartesianGrid stroke="#A5AEE1" strokeDasharray="5 5" />
