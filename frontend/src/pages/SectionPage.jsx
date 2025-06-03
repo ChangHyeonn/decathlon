@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TheHeader from "../layout/TheHeader";
-import SectionGraph from "../components/SectionGraph";
+import SectionGraph from "../components/section/SectionGraph";
 import { useState } from "react";
 
 const GraphDiv = styled.div`

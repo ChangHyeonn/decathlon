@@ -1,7 +1,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Label } from "recharts";
 import styled from "styled-components";
 import { useQuery } from "@tanstack/react-query";
-import { getGraphToday, getGraphWeekly, getGraphMonthly } from "../api/sectionApi";
+import { getGraphToday, getGraphWeekly, getGraphMonthly } from "../../api/sectionApi";
 
 const GraphDiv = styled.div`
   width: 90%;
@@ -10,6 +10,12 @@ const GraphDiv = styled.div`
   margin: auto;
   justify-content: center;
   align-items: center;
+`;
+
+const MessageH2 = styled.h2`
+  margin: 40px auto;
+  font-size: 20px;
+  font-weight: 500;
 `;
 
 const SectionGraph = ({ nowDate }) => {
@@ -28,10 +34,10 @@ const SectionGraph = ({ nowDate }) => {
   });
 
   if (isPending) {
-    return <h2>Loading...</h2>;
+    return <MessageH2>Loading...</MessageH2>;
   }
   if (isError) {
-    return <h2>Error fetching posts</h2>;
+    return <MessageH2>Error fetching posts</MessageH2>;
   }
 
   console.log(graphData);

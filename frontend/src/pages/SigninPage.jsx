@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import TitleImage from "../assets/title.svg";
-import SignInForm from "../components/SignInForm";
+import SignInForm from "../components/section/SignInForm";
 
 const ContainerDiv = styled.div`
   width: 100%;
