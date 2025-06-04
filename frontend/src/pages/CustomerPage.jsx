@@ -41,6 +41,10 @@ const MessageH2 = styled.h2`
   font-weight: 500;
 `;
 
+const CustomerListDiv = styled.div`
+  min-height: calc(54.67px * 10);
+`;
+
 const Pagination = styled.p`
   display: flex;
   gap: 10px;
@@ -168,11 +172,13 @@ const CustomerPage = () => {
         <CustomerTitle
           title={customerData.customer_tracking_records ? Object.keys(customerData.customer_tracking_records[0]) : []}
         />
-        {customerData.customer_tracking_records.map((customer) => {
-          return (
-            <CustomerList key={customer.customer_id} customer={customer} onClick={() => handleModalOpen(customer)} />
-          );
-        })}
+        <CustomerListDiv>
+          {customerData.customer_tracking_records.map((customer) => {
+            return (
+              <CustomerList key={customer.customer_id} customer={customer} onClick={() => handleModalOpen(customer)} />
+            );
+          })}
+        </CustomerListDiv>
         <Pagination>
           <ButtonPage onClick={() => setPage((p) => Math.max(1, p - 1))}>{`<`}</ButtonPage>
           {Array.from({ length: customerData?.pagination?.total_pages || 1 }, (_, index) => index + 1).map((num) => (
