@@ -29,22 +29,19 @@ jobs:
       - name: Install pnpm # package manager 설치
         run: |
           npm install -g pnpm
-
-      - name: Create .env file # 환경변수 넣기
-        run: |
-          echo "VITE_APP_BASE_URL=${{ secrets.VITE_APP_BASE_URL }}" >> .env
-          echo "VITE_APP_KAKAO_AUTH_CLIENT_ID=${{ secrets.VITE_APP_KAKAO_AUTH_CLIENT_ID }}" >> .env
-          echo "VITE_APP_KAKAO_AUTH_REDIRECT_URI=${{ secrets.VITE_APP_KAKAO_AUTH_REDIRECT_URI }}" >> .env
-          echo "VITE_ENV"=${{ secrets.VITE_ENV }} >> .env
+        working-directory: ./frontend
 
       - name: Install Dependencies
         run: pnpm install --no-frozen-lockfile --force
+        working-directory: ./frontend
 
       - name: Lint Code # ESLint 실행하기
         run: pnpm lint
+        working-directory: ./frontend
 
       - name: Build # Build 실행하기
         run: CI='' pnpm run build
+        working-directory: ./frontend
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
