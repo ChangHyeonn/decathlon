@@ -1,0 +1,1747 @@
+{
+  "date": "2025-06-03",
+  "objects": [
+    {
+      "track_id": 255,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone3",
+        "zone1",
+        "zone1",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 256,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone3",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 257,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 258,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone5",
+        "zone2",
+        "zone3",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 259,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone1",
+        "zone3",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 260,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone2",
+        "zone3",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 261,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone6",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 262,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 263,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone1",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 264,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone1",
+        "zone6",
+        "zone7",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 265,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 266,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone1",
+        "zone7",
+        "zone6",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 267,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 268,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone1",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 269,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 270,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone2",
+        "zone1",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 271,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone6",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 272,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone4",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 273,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone2",
+        "zone2",
+        "zone4",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 274,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone3",
+        "zone7",
+        "zone3",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 275,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone4",
+        "zone1",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 276,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone4",
+        "zone1",
+        "zone7",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 277,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone4",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 278,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 279,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 280,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone5",
+        "zone6",
+        "zone4",
+        "zone5",
+        "zone_checkout",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 281,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone3",
+        "zone3",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 282,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 283,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone2",
+        "zone4",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 284,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone2",
+        "zone3",
+        "zone1",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 285,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone5",
+        "zone4",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 286,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone1",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 287,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone3",
+        "zone1",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 288,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone3",
+        "zone1",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 289,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone3",
+        "zone3",
+        "zone5",
+        "zone3",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 290,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 291,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone6",
+        "zone6",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 292,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 293,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone4",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 294,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 295,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 296,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone7",
+        "zone6",
+        "zone1",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 297,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone6",
+        "zone7",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 298,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone3",
+        "zone2",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 299,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone6",
+        "zone1",
+        "zone1",
+        "zone2",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 300,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone1",
+        "zone4",
+        "zone6",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 301,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone7",
+        "zone3",
+        "zone6",
+        "zone2",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 302,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone5",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 303,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 304,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone3",
+        "zone4",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 305,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone7",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 306,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone4",
+        "zone4",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 307,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone4",
+        "zone2",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 308,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 309,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone4",
+        "zone1",
+        "zone6",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 310,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone3",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 311,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone6",
+        "zone3",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 312,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 313,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone6",
+        "zone1",
+        "zone4",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 314,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 315,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone6",
+        "zone2",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 316,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone3",
+        "zone2",
+        "zone6",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 317,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 318,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone7",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 319,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone5",
+        "zone6",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 320,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone6",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 321,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone3",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 322,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 323,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone1",
+        "zone4",
+        "zone6",
+        "zone1",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 324,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone5",
+        "zone1",
+        "zone5",
+        "zone5",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 325,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 326,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 327,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone2",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 328,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone4",
+        "zone1",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 329,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone1",
+        "zone7",
+        "zone4",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 330,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 331,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone6",
+        "zone4",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 332,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone3",
+        "zone1",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 333,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone5",
+        "zone3",
+        "zone3",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 334,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone3",
+        "zone7",
+        "zone7",
+        "zone7",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 335,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone7",
+        "zone7",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 336,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 337,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone7",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 338,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone2",
+        "zone7",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 339,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone3",
+        "zone1",
+        "zone6",
+        "zone2",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 340,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone6",
+        "zone6",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 341,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 342,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone5",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 343,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone1",
+        "zone6",
+        "zone3",
+        "zone7",
+        "zone_checkout",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 344,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone3",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 345,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone2",
+        "zone5",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 346,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 347,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone6",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 348,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone5",
+        "zone7",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 349,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone2",
+        "zone2",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 350,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone1",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 351,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 352,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6",
+        "zone2",
+        "zone1",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 353,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone2",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 354,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6",
+        "zone2",
+        "zone7",
+        "zone4",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 355,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone6",
+        "zone1",
+        "zone6",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 356,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone3",
+        "zone2",
+        "zone5",
+        "zone_checkout",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 357,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone2",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 358,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone3",
+        "zone1",
+        "zone4",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 359,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone7",
+        "zone6",
+        "zone3",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 360,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 361,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone2",
+        "zone6",
+        "zone1",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 362,
+      "current_zone": "zone5",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone5"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 363,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone5",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 364,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone7",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 365,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6",
+        "zone7",
+        "zone2",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 366,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone5",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 367,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone1",
+        "zone1",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 368,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone5",
+        "zone6",
+        "zone7",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 369,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone4",
+        "zone4",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 370,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone5",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 371,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone3",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 372,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone7",
+        "zone1",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 373,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone5",
+        "zone1",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 374,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone4",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 375,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 376,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone6",
+        "zone4",
+        "zone5",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 377,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone7",
+        "zone4",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 378,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 379,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone6",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 380,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone1",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 381,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone4",
+        "zone7",
+        "zone4",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 382,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone2",
+        "zone5",
+        "zone1",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 383,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone5",
+        "zone6",
+        "zone1",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 384,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 385,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone1",
+        "zone7",
+        "zone2",
+        "zone_checkout",
+        "zone_entrance"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 386,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 387,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone2",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 388,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone6",
+        "zone1",
+        "zone4",
+        "zone3",
+        "zone2",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 389,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone2",
+        "zone2",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 390,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone2",
+        "zone7",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 391,
+      "current_zone": "zone1",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone1"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 392,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone2",
+        "zone7",
+        "zone4",
+        "zone1",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 393,
+      "current_zone": "zone6",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone2",
+        "zone7",
+        "zone2",
+        "zone6"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 394,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone3",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 395,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 396,
+      "current_zone": "zone7",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone7",
+        "zone7"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 397,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone4",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 398,
+      "current_zone": "zone2",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone5",
+        "zone2"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 399,
+      "current_zone": "zone3",
+      "path_history": [
+        "zone_entrance",
+        "zone4",
+        "zone7",
+        "zone4",
+        "zone3"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 400,
+      "current_zone": "zone4",
+      "path_history": [
+        "zone_entrance",
+        "zone2",
+        "zone2",
+        "zone4"
+      ],
+      "purchase": false
+    },
+    {
+      "track_id": 401,
+      "current_zone": "zone_checkout",
+      "path_history": [
+        "zone_entrance",
+        "zone1",
+        "zone1",
+        "zone7",
+        "zone_checkout"
+      ],
+      "purchase": true
+    },
+    {
+      "track_id": 402,
+      "current_zone": "zone_entrance",
+      "path_history": [
+        "zone_entrance",
+        "zone7",
+        "zone3",
+        "zone3",
+        "zone_entrance"
+      ],
+      "purchase": false
+    }
+  ]
+}
