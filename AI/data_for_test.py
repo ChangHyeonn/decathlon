@@ -1,13 +1,15 @@
-import json
+# 데이터 시현용
 import random
+import time
+import requests
 from datetime import datetime, timedelta
 
 zones = ['zone1', 'zone2', 'zone3', 'zone4', 'zone5', 'zone6', 'zone7']
 entrance = 'zone_entrance'
 checkout = 'zone_checkout'
 
-# 공휴일로 가정할 날짜
-holidays = {'2025-06-06','2025-06-03','2025-06-07','2025-06-08','2025-06-01'}  # 현충일
+# 공휴일
+holidays = {'2025-06-06','2025-06-03','2025-06-07','2025-06-08','2025-06-01'}
 
 def generate_path():
     path = [entrance]
@@ -17,11 +19,13 @@ def generate_path():
     if random.random() < 0.15:
         path.append(checkout)
     if random.random() < 0.1:
-        path.append(entrance)  # 재입장 없이 나간 경우
+        path.append(entrance)
     return path
 
 track_id_counter = 1
 start_date = datetime.strptime("2025-06-01", "%Y-%m-%d")
+api_url = "http://127.0.0.1:8000/api/tracking"
+
 for day in range(10):
     current_date = start_date + timedelta(days=day)
     date_str = current_date.strftime("%Y-%m-%d")
@@ -47,8 +51,13 @@ for day in range(10):
         "objects": objects
     }
 
-    filename = f"tracking_data_{date_str}.json"
-    with open(filename, "w") as f:
-        json.dump(result, f, indent=2)
+    try:
+        response = requests.post(api_url, json=result)
+        if response.status_code == 200:
+            print(f"Data for {date_str} sent successfully.")
+        else:
+            print(f"Failed to send data for {date_str}. Status code: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error sending data for {date_str}: {e}")
 
-    print(f"{filename} saved.")
+    time.sleep(1.5)
