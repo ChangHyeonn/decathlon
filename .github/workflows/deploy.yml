@@ -56,3 +56,4 @@ jobs:
             --recursive \
             --region ap-northeast-2 \
             ./dist s3://${{env.S3_BUCKET_NAME}}
+        working-directory: ./frontend
