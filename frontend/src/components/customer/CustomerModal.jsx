@@ -107,7 +107,7 @@ const CustomerModal = ({ isModalOpen, handleModalClose, customer }) => {
             <ContextP>{customerDetail.customer_data.tracking_period}</ContextP>
 
             <ContextP>총 체류 시간: {customerDetail.customer_data.total_stay_time_seconds}초</ContextP>
-            <ContextP>구매 여부: {customerDetail.customer_data.purchase_state ? "X" : "O"}</ContextP>
+            <ContextP>구매 여부: {customerDetail.customer_data.purchase_status ? "O" : "X"}</ContextP>
             <ContextP>점수: {customerDetail.customer_data.score}</ContextP>
           </CustomerDataDiv>
           <LineDiv />
