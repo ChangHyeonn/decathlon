@@ -101,7 +101,6 @@ const SectionGraph = ({ nowDate }) => {
               return [`${value} %`, name];
             }
             if (name === "매출") {
-              // 만원 단위로 변환 (예: 30000 → 3만원)
               return [`${value} 만원`, name];
             }
             return [value, name];
