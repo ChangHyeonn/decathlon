@@ -16,6 +16,7 @@ const CustomerItem = styled.div`
 
 const Info = styled.div`
   font-size: 18px;
+  color: ${({ $highlight }) => $highlight};
   min-width: 50px;
   text-align: center;
   flex: 1;
@@ -33,11 +34,34 @@ const CustomerList = ({ customer, onClick }) => {
     return `${value}초`;
   };
 
+  const renderHighlight = (key, value) => {
+    let highlight = false;
+    if (key !== "customer_id" && key !== "score" && typeof value === "number") {
+      if (value >= 600) {
+        highlight = "#FF242C";
+      } else if (value >= 400) {
+        highlight = "#DB1F26";
+      }
+    }
+    if (key === "score") {
+      if (value >= 90) {
+        highlight = "#FF242C";
+      } else if (value >= 80) {
+        highlight = "#DB1F26";
+      }
+    }
+    return highlight;
+  };
+
   return (
     <CustomerItem onClick={onClick}>
-      {entries.map(([key, value]) => (
-        <Info key={key}>{renderValue(key, value)}</Info>
-      ))}
+      {entries.map(([key, value]) => {
+        return (
+          <Info key={key} $highlight={renderHighlight(key, value)}>
+            {renderValue(key, value)}
+          </Info>
+        );
+      })}
     </CustomerItem>
   );
 };
