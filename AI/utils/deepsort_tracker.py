@@ -1,3 +1,5 @@
+# ----deepsort tracker --main
+
 from deep_sort_realtime.deepsort_tracker import DeepSort
 
 class DeepSortTracker:
@@ -6,7 +8,6 @@ class DeepSortTracker:
             max_age=30,
             max_cosine_distance=0.3,
             n_init=3,
-            #embedder_gpu=True, # GPU 환경
             embedder_gpu=False
         )
 
