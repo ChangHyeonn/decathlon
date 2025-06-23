@@ -1,3 +1,5 @@
+# data sender ----main
+
 from datetime import datetime
 import logging
 import requests
@@ -37,7 +39,7 @@ class DataAnalyzer:
             existing[obj["track_id"]] = obj
         self.objects = list(existing.values())
 
-    def send_to_api(self, api_url="http://127.0.0.1:8000/api/tracking"):
+    def send_to_api(self, api_url="http://13.59.231.133:8080/api/tracking"):
         self.analyze()
 
         result = {
