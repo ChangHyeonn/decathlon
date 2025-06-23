@@ -2,13 +2,12 @@ import os
 import time
 import cv2
 import numpy as np
-from multiprocessing import Process, Queue, set_start_method, Manager
 from utils.yolo_detector import YOLODetector
 from utils.deepsort_tracker import DeepSortTracker
-from utils.reid_torch import TorchReIDFeatureExtractor
+from utils.reid_torch import FeatureExtractor
 from utils.data_analysis import DataAnalyzer
+from utils.global_id_matcher import GlobalIDMatcher
 import config
-
 
 def point_in_poly(point, poly):
     x, y = point
@@ -27,123 +26,87 @@ def point_in_poly(point, poly):
         p1x, p1y = p2x, p2y
     return inside
 
-
-def reid_process(task_queue, result_queue):
-    reid = TorchReIDFeatureExtractor()
-    while True:
-        item = task_queue.get()
-        if item is None:
-            break
-        cam_name, feat, track_id = item
-        global_id = reid.register_or_match_feature(feat, cam_name)
-        result_queue.put((cam_name, track_id, global_id))
-
-
-def process_camera(cam_name, task_queue, result_queue, shared_data):
-    detector = YOLODetector()
-    tracker = DeepSortTracker()
-    reid_extractor = TorchReIDFeatureExtractor()
-    video_path = config.VIDEO_PATHS[cam_name]
-    cap = cv2.VideoCapture(video_path)
-    
-    if not cap.isOpened():
-        print(f"[{cam_name}] Failed to open video : {video_path}")
-        return
-
-    print(f"[{cam_name}] Started video stream")
-
-    zones = config.CAM_ZONES.get(cam_name, {})
-
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-        
-        video_time_sec = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
-
-        detections = detector.detect(frame)
-        tracks = tracker.update(detections, frame)
-
-        for track in tracks:
-            if not track.is_confirmed():
-                continue
-
-            l, t, r, b = map(int, track.to_ltrb())
-            cx = int((l + r) / 2)
-            cy = int((t + b) / 2)
-
-            current_zone = None
-            for zone_name, points in zones.items():
-                if point_in_poly((cx, cy), points):
-                    current_zone = zone_name
-                    break
-
-            if not current_zone:
-                continue
-
-            crop = frame[t:b, l:r]
-            if crop.size == 0:
-                continue
-
-            feat = reid_extractor.extract(crop)
-            task_queue.put((cam_name, feat, track.track_id))
-
-            key = (cam_name, track.track_id)
-            info = shared_data.get(key, {
-                "path": [],
-                "last_zone": None,
-                "last_seen": 0,
-                "last_seen_second": int(video_time_sec)
-            })
-
-            if current_zone != info["last_zone"]:
-                info["path"].append(current_zone)
-                info["last_seen"] = 0
-                info["last_seen_second"] = int(video_time_sec)
-
-            # 영상 시간 기준으로 last_seen 증가
-            current_sec = int(video_time_sec)
-            if current_sec > info["last_seen_second"]:
-                info["last_seen"] += current_sec - info["last_seen_second"]
-                info["last_seen_second"] = current_sec
-
-            info["last_zone"] = current_zone
-            shared_data[key] = info
-
-
-        time.sleep(0.01)
-        while not result_queue.empty():
-            cam, tid, gid = result_queue.get()
-
-    cap.release()
-    print(f"[{cam_name}] Video processing ended")
-
 def main():
-    set_start_method("spawn")
-    manager = Manager()
-    shared_data = manager.dict()
-    task_queue = Queue(maxsize=100)
-    result_queue = Queue(maxsize=100)
+    caps = {}
+    trackers = {}
+    detectors = {}
+    extractors = {}
 
-    reid_p = Process(target=reid_process, args=(task_queue, result_queue))
-    reid_p.start()
+    shared_data = dict()
+    matcher = GlobalIDMatcher()
 
-    cam_processes = []
+    # 카메라 초기화
     for cam_name in config.VIDEO_NAMES:
-        p = Process(target=process_camera, args=(cam_name, task_queue, result_queue, shared_data))
-        p.start()
-        cam_processes.append(p)
+        caps[cam_name] = cv2.VideoCapture(config.VIDEO_PATHS[cam_name])
+        trackers[cam_name] = DeepSortTracker()
+        detectors[cam_name] = YOLODetector()
+        extractors[cam_name] = FeatureExtractor()
 
-    for p in cam_processes:
-        p.join()
+    while True:
+        for cam_name in config.VIDEO_NAMES:
+            cap = caps[cam_name]
+            ret, frame = cap.read()
+            if not ret:
+                continue
 
-    task_queue.put(None)
-    reid_p.join()
+            video_time_sec = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0
+            detections = detectors[cam_name].detect(frame)
+            tracks = trackers[cam_name].update(detections, frame)
 
-    analyzer = DataAnalyzer(shared_data)
-    analyzer.send_to_api()
+            zones = config.CAM_ZONES.get(cam_name, {})
+
+            for track in tracks:
+                if not track.is_confirmed():
+                    continue
+
+                l, t, r, b = map(int, track.to_ltrb())
+                cx = int((l + r) / 2)
+                cy = int((t + b) / 2)
+
+                # zone 판단
+                current_zone = None
+                for zone_name, points in zones.items():
+                    if point_in_poly((cx, cy), points):
+                        current_zone = zone_name
+                        break
+
+                if not current_zone:
+                    continue
+
+                crop = frame[t:b, l:r]
+                if crop.size == 0:
+                    continue
+
+                feat = extractors[cam_name].extract(crop)
+                global_id = matcher.register_or_match_feature(feat, cam_name, track.track_id)
+
+                key = (cam_name, track.track_id)
+                info = shared_data.get(key, {
+                    "path": [],
+                    "last_zone": None,
+                    "last_seen": 0,
+                    "last_seen_second": int(video_time_sec)
+                })
+
+                if current_zone != info["last_zone"]:
+                    info["path"].append(current_zone)
+                    info["last_zone"] = current_zone
+                    info["last_seen"] = 0
+                    info["last_seen_second"] = int(video_time_sec)
+                
+                current_sec = int(video_time_sec)
+                if current_sec > info["last_seen_second"]:
+                    info["last_seen"] += current_sec - info["last_seen_second"]
+                    info["last_seen_second"] = current_sec
+
+                shared_data[key] = info
+
+        time.sleep(config.ANALYSIS_INTERVAL)
+        
+        # 데이터 전송
+        analyzer = DataAnalyzer(shared_data)
+        analyzer.send_to_api()
+
 
 if __name__ == "__main__":
     main()
-    
-# -----확정------
