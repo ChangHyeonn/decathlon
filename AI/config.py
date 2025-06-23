@@ -1,5 +1,5 @@
 VIDEO_NAMES = [] #목적에 맞추어 추가 및 작성
-ANALYSIS_INTERVAL = 1.5 # 분석 interval
+ANALYSIS_INTERVAL = 0.5 # 분석 interval
 FPS = 15 # fps 설정
 VIDEO_PATHS = { # 목적에 맞추어 비디오 path 추가 및 작성
             "cam01": ""
